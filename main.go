@@ -13,8 +13,8 @@ import (
 
 func main() {
 	fmt.Println("Ready to compile ...")
+	filename, _ := filepath.Abs(os.Getenv("INPUT_APPYAMLPATH"))
 	
-	filename, _ := filepath.Abs("app.yaml")
 	yamlFile, err := ioutil.ReadFile(filename)
 	if err != nil {
 		panic(err)
@@ -53,7 +53,7 @@ func main() {
 		}
 	}
 	
-	fmt.Println(fmt.Sprintf("Compiled env variables: %v",mapResult["env_variables"]))
+	fmt.Println(fmt.Sprintf("Compiled env variables: %v", mapResult["env_variables"]))
 
 	out, err := yaml.Marshal(mapResult)
 	// write the whole body at once
