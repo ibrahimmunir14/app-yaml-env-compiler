@@ -17,13 +17,12 @@
 2. Add this action to your workflow:
     
         - uses: actions/checkout@v1
-        - uses: ikuanyshbekov/app-yaml-env-compiler@v1.0
+        - uses: dovidio/app-yaml-env-compiler@master
           env:
             MY_ENV_VAR1: ${{ secrets.MY_ENV_VAR1 }}
-            MY_ENV_VAR2: ${{ secrets.MY_ENV_VAR2 }}  
-         
-`Note: app.yaml file should be in the root project directory`
-
+            MY_ENV_VAR2: ${{ secrets.MY_ENV_VAR2 }}
+          with:
+            appyamlpath: './src/main/appengine/app.yaml' # You can leave this configuration if app.yaml is in the root of your repo
 
 Full example with deployment to Google App Engine:     
 
@@ -33,10 +32,12 @@ Full example with deployment to Google App Engine:
         needs: [build]
     steps:
         - uses: actions/checkout@v1
-        - uses: ikuanyshbekov/app-yaml-env-compiler@v1.0
+        - uses: dovidio/app-yaml-env-compiler@v1.0
           env:
             MY_ENV_VAR1: ${{ secrets.MY_ENV_VAR1 }}
-            MY_ENV_VAR2: ${{ secrets.MY_ENV_VAR2 }}              
+            MY_ENV_VAR2: ${{ secrets.MY_ENV_VAR2 }}
+          with:
+            appyamlpath: './src/main/appengine/app.yaml'              
         - uses: actions-hub/gcloud@master
           env:
             PROJECT_ID: ${{ secrets.GCLOUD_PROJECT_ID }}
