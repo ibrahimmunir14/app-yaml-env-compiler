@@ -7,7 +7,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
 inputs:
-  appYamlPath:
+  appyamlpath:
     description: 'The path of the app.yaml file'
     required: false
     default: 'app.yaml'
