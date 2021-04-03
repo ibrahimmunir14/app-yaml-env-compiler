@@ -13,7 +13,9 @@ import (
 
 func main() {
 	fmt.Println("Ready to compile ...")
-	filename, _ := filepath.Abs(os.Getenv("INPUT_APPYAMLPATH"))
+	fileNameString := os.Getenv("INPUT_APPYAMLPATH")
+	fmt.Println("Using " + fileNameString)
+	filename, _ := filepath.Abs(fileNameString)
 	
 	yamlFile, err := ioutil.ReadFile(filename)
 	if err != nil {
